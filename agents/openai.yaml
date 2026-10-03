@@ -1,0 +1,6 @@
+interface:
+  display_name: "Project Resume and Sync"
+  short_description: "Small project context, durable local change history"
+  default_prompt: "Use $project-resume-and-sync to resume this project from a short local record and sync material changes."
+policy:
+  allow_implicit_invocation: true
