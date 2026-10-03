@@ -1,36 +1,47 @@
-[简体中文](README.md) | English
+<p align="center">
+  <a href="README.md">简体中文</a> · <strong>English</strong>
+</p>
 
-# 📝 Project Resume and Sync
+<h1 align="center">📝 Project Resume and Sync</h1>
 
-**Keep track of progress and decisions, so your agent can pick up where you left off.**
+<p align="center">By <a href="https://github.com/yunli2024">yunli</a></p>
 
-You're halfway through a project, open a new chat, and have to explain it all again: what's done, why you chose this approach, and what comes next.
-Come back a few weeks later, and you have to dig through the notes yourself.
+<p align="center">
+  <a href="https://github.com/yunli2024/project-resume-and-sync/releases/latest"><img src="https://img.shields.io/github/v/release/yunli2024/project-resume-and-sync?style=flat&amp;label=release&amp;color=2563eb" alt="Latest release"></a>
+  <a href="https://github.com/yunli2024/project-resume-and-sync/actions/workflows/tests.yml"><img src="https://img.shields.io/github/actions/workflow/status/yunli2024/project-resume-and-sync/tests.yml?branch=main&amp;style=flat&amp;label=tests" alt="CI status on main"></a>
+  <a href="https://www.python.org/downloads/"><img src="https://img.shields.io/badge/Python-3.10%2B-3776AB?style=flat&amp;logo=python&amp;logoColor=white" alt="Python 3.10 or newer"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-0f766e?style=flat" alt="MIT license"></a>
+</p>
+
+<p align="center">
+  <strong>Keep track of progress and decisions, so your agent can pick up where you left off.</strong><br>
+</p>
+
+<p align="center">
+  <a href="#quick-start">Get started</a> ·
+  <a href="#everyday-use">Everyday use</a> ·
+  <a href="#how-it-works">How it works</a> ·
+  <a href="#faq">FAQ</a>
+</p>
+
+---
+
+Does this sound familiar? You're halfway through a project with an agent, open a new chat, and have to explain it all again: what's done, why you chose this approach, and what comes next.
+Come back a few days later, and you've forgotten where you left off, too. Time to dig through the notes.
 
 This Skill keeps those notes in your project. The next session starts with a short summary. When you need the story behind a decision, follow its reference to the recorded details and source files.
 
-**Python 3.10+ · Standard library only · Local storage · [MIT](LICENSE)**
-
-[Get started](#get-started) · [Everyday use](#everyday-use) · [Behind the summary](#behind-the-summary) · [FAQ](#faq)
-
-## When it comes in handy
-
-| You want to… | The Skill helps you… |
-| --- | --- |
-| Continue in a new chat | Read the current goal, progress, blockers, and next step |
-| Understand an earlier choice | Find the decision, its reason, and its source |
-| Revisit work from weeks ago | Search by topic or date, including archived records |
-| Hand the project to a teammate | Export a handoff draft with pointers to relevant files |
-| Review or repeat a run | Find the commands, configs, inputs, and outputs you recorded |
-
 There are two everyday actions:
 
-- **`resume`: catch up.** Read the current state and next step before starting work.
-- **`sync`: write down what changed.** Save meaningful progress or decisions, along with the reasons and sources.
+| `resume` · Pick up where you left off | `sync` · Write down what changed |
+| :--- | :--- |
+| Let the agent read the current state and next step before starting work. | After meaningful progress or a decision, let the agent save the outcome, reasons, and sources. |
 
 Here, sync means updating the project record. Records stay on your machine; file transfers and cloud sync belong to your existing tools.
 
-## Get started
+<a id="quick-start"></a>
+
+## 🚀 Get started
 
 The steps below use **Codex**. You'll need Python 3.10 or newer.
 
@@ -59,7 +70,8 @@ Start by recording the current goal, progress, and next step.
 
 The agent adds a short agreement to the project's instruction file (usually `AGENTS.md`) and creates the local records. Existing content is preserved, and running setup again won't add a duplicate block.
 
-**Install the Skill once; enable it once per project.** For another project, just repeat this step.
+> [!TIP]
+> **Install the Skill once; enable it once per project.** For another project, just repeat this step.
 
 ### 3. Keep working as usual
 
@@ -68,7 +80,7 @@ Next time you open a chat in that project, say “Continue this project.” The 
 Proactive use depends on the client loading project instructions and the agent following them. If it misses a step, say “Use project-resume-and-sync to catch up” or “Sync the project record.”
 
 <details>
-<summary>Install locations, custom paths, and command-line setup</summary>
+<summary><strong>Install locations, custom paths, and command-line setup</strong></summary>
 
 New installations default to `~/.agents/skills/project-resume-and-sync`. An existing `~/.codex/skills/project-resume-and-sync` installation is reused; an explicit `CODEX_HOME` selects its `skills` directory. The installer prints the actual path.
 
@@ -96,7 +108,9 @@ Upgrades back up replaced runtime files and keep other files in the installation
 
 </details>
 
-## Everyday use
+<a id="everyday-use"></a>
+
+## 💬 Everyday use
 
 Once enabled, you can keep talking to your agent as usual. To ask for a specific action, try:
 
@@ -110,7 +124,9 @@ Once enabled, you can keep talking to your agent as usual. To ask for a specific
 
 Routine questions and unchanged status don't need another entry. Keep what matters: **what got done, what changed, why it changed, what's blocked, and what's next.**
 
-## Behind the summary
+<a id="how-it-works"></a>
+
+## 🔎 Behind the summary
 
 Suppose you're building a CSV importer. In a new session, the agent first sees something like this (simplified):
 
@@ -124,7 +140,7 @@ Unverified: A teammate reported passing adapter tests; results still need checki
 When you ask “Why did we defer streaming?”, the agent can follow the reference to the full record, read the reason, and locate sources such as `docs/api.md`.
 An actual reference looks like `state:4#/decisions/0`: one specific item in one version of the record.
 
-That's the core idea: **read a short summary for everyday work, and look up the details when you need them.**
+> That's the core idea: **read a short summary for everyday work, and look up the details when you need them.**
 
 - **Limit what each session reads.** The default view is capped at 6,000 characters (not tokens). It draws from the current state and the three newest events, and reports how many items aren't shown. Older history is retrieved on demand.
 - **Keep the story when plans change.** The current state holds the latest decision; history preserves earlier proposals, changes, and reasons.
@@ -134,7 +150,9 @@ That's the core idea: **read a short summary for everyday work, and look up the 
 
 The record helps you find what you need to reproduce work. Rerunning it still requires access to the relevant code, data, and environment.
 
-## Want to try it first?
+<a id="demo"></a>
+
+## 🧪 Want to try it first?
 
 From the downloaded repository, run:
 
@@ -144,17 +162,19 @@ python examples/demo.py
 
 The demo creates a temporary project and walks through recording progress, changing a decision, resuming in a fresh context, and finding an old reason after compaction. It needs no agent connection or API setup and prints the file location so you can look around.
 
-## FAQ
+<a id="faq"></a>
+
+## ❓ FAQ
 
 <details>
-<summary>Does it save the whole conversation?</summary>
+<summary><strong>Does it save the whole conversation?</strong></summary>
 
 It saves the progress, decisions, and sources that the agent writes through `sync`. There is no background chat capture. Anything not yet recorded needs to be recovered from a conversation or file you can still access.
 
 </details>
 
 <details>
-<summary>Where do the records live? What about another computer or a teammate?</summary>
+<summary><strong>Where do the records live? What about another computer or a teammate?</strong></summary>
 
 In the project's `.project-ledger/` directory: current state, event history, and a readable `HANDOFF.md`. Initialization adds a local Git exclusion when the project is a Git repository.
 
@@ -163,7 +183,7 @@ Everyday records stay on your machine. For a handoff, ask the agent to export a 
 </details>
 
 <details>
-<summary>Can I use it with another coding agent?</summary>
+<summary><strong>Can I use it with another coding agent?</strong></summary>
 
 The Skill consists of `SKILL.md` and standard-library Python scripts. Clients that support this kind of Skill can use `--dest` to select their install location. Project instructions can also be added to another file with `enable --instructions CLAUDE.md`.
 
@@ -172,7 +192,7 @@ The current getting-started guide focuses on Codex. Discovery and proactive invo
 </details>
 
 <details>
-<summary>I'd rather use the command line</summary>
+<summary><strong>I'd rather use the command line</strong></summary>
 
 From the downloaded repository, replace the path with the project you want to record:
 
@@ -187,7 +207,9 @@ For exact retrieval, exports, compaction, or interrupted updates, see the [comma
 
 </details>
 
-## Why I built this
+<a id="why-i-built-this"></a>
+
+## 🌱 Why I built this
 
 It started in a research project that ran for several months. As experiments, discussions, and handoffs piled up, the notes got longer and catching up got harder. Old decisions blended into new progress, and every fresh chat needed a growing pile of background reading.
 
@@ -196,5 +218,7 @@ Over time, it settled into this approach: keep the current state short, leave th
 If you've run into “we wrote this down, but still couldn't pick up the work,” [open an issue](https://github.com/yunli2024/project-resume-and-sync/issues). The situation, what you expected, and what actually happened are a useful start. Please remove private details from examples.
 
 [Design choices](docs/DESIGN.md) · [Validation](docs/VALIDATION.md) · [Evaluation scenarios](docs/EVALUATION.md) · [Related projects](docs/RELATED_WORK.md) · [Changelog](CHANGELOG.md)
+
+---
 
 [MIT License](LICENSE) — use it, adapt it, and share it.
