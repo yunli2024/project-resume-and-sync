@@ -7,6 +7,11 @@ The final review on 2026-10-03 reran all 52 tests on Windows with Python 3.12.4:
 includes the CLI demo, install/upgrade/setup, concurrency/recovery, exact retrieval,
 and release allowlist/manifest checks. Skill format validation also passed.
 
+The first hosted CI run exposed temporary-directory aliases on macOS and Windows
+runners. The CLI already resolves these paths; direct-call test fixtures now do
+the same before comparing identities or mocking exact paths. The original
+project-boundary checks remain in place.
+
 The Chinese-default README and English counterpart have working local links and
 language switches. Release packaging uses an explicit file list and LF text
 line endings; private project records and temporary test output stay outside it.

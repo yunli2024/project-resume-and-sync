@@ -17,7 +17,7 @@ import local_ledger as app
 
 class RetrievalTests(unittest.TestCase):
     def setUp(self):
-        self.root = Path(tempfile.mkdtemp(prefix="ledger-retrieval-"))
+        self.root = Path(tempfile.mkdtemp(prefix="ledger-retrieval-")).resolve()
         self.ledger = self.root / ".project-ledger"
         self.run_command("init")
 

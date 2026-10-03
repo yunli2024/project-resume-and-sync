@@ -20,7 +20,7 @@ import local_ledger as app
 
 class LedgerTests(unittest.TestCase):
     def setUp(self):
-        self.root = Path(tempfile.mkdtemp(prefix="project-ledger-test-"))
+        self.root = Path(tempfile.mkdtemp(prefix="project-ledger-test-")).resolve()
         self.ledger = self.root / ".project-ledger"
         self.cli("init")
 

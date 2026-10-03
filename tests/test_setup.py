@@ -17,7 +17,7 @@ import local_ledger as app
 
 class SetupTests(unittest.TestCase):
     def setUp(self):
-        self.root = Path(tempfile.mkdtemp(prefix="ledger-setup-"))
+        self.root = Path(tempfile.mkdtemp(prefix="ledger-setup-")).resolve()
 
     def enable(self, *args):
         return app.execute(app.make_parser().parse_args(["enable", "--project-root", str(self.root), *args]))
